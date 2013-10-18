@@ -3,7 +3,6 @@
 *.pyc
 local_settings.py
 public/
-shute/
 mezz_templates/
 tmp/
 django-mez/
