@@ -57,7 +57,7 @@
     {% if settings.SITE_TITLE %}<a class="brand" href="/">{{ settings.SITE_TITLE }}</a>{% endif %}
     {% if settings.SITE_TAGLINE %}<p class="navbar-text">{{ settings.SITE_TAGLINE }}</p>{% endif %}
     <div class="nav-collapse collapse">
-        {% search_form "all" %}
+        {% search_form %}
         {% page_menu "pages/menus/dropdown.html" %}
     </div>
 </div>
@@ -88,13 +88,15 @@
 <div class="container">
 <div class="row">
 
+{% if False %}
 <div class="span2 left">
     {% block left_panel %}
     <div class="panel tree">{% page_menu "pages/menus/tree.html" %}</div>
     {% endblock %}
 </div>
+{% endif %}
 
-<div class="span7 middle">
+<div class="span8 middle">
     {% block main %}{% endblock %}
 </div>
 
