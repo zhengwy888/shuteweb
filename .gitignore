@@ -2,3 +2,10 @@
 *.pot
 *.pyc
 local_settings.py
+public/
+shute/
+mezz_templates/
+tmp/
+django-mez/
+gully/
+passenger_wsgi.py
