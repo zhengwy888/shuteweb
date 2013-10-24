@@ -7068,3 +7068,13 @@ a.thumbnail:hover {
 .affix {
   position: fixed;
 }
+
+.blog-image {
+    display: block;
+    margin: 5px;
+}
+
+.blog-image-center {
+    margin-left: auto;
+    margin-right: auto;
+}
