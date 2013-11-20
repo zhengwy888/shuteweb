@@ -149,4 +149,15 @@ div.addthis_toolbox > .atclear{ clear:none; }
 {% if blog_post.allow_comments %}{% comments_for blog_post %}{% endif %}
 {% endblock %}
 
+<script type="text/javascript">
+    (function($) {
+    //adding links to unlinked images
+     var imgs = $('img').parent('div').children();
+     imgs.each(function(idx, elem) {
+         var tortilla = $("<a/>").attr("href", elem.src);
+         $(elem).wrap(tortilla);
+         }); 
+     })(jQuery);
+</script>
+
 {% endblock %}
