@@ -78,7 +78,12 @@
 {% endif %}
 
 {% block blog_post_detail_addthis %}
-{% set_short_url_for blog_post %}
+
+<style type="text/css">
+div.addthis_toolbox > .atclear{ clear:none; }
+</style>
+
+<div class="share-button-row">
 <!-- AddThis Button BEGIN -->
 <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
 <a class="addthis_button_preferred_1"></a>
@@ -90,6 +95,22 @@
 </div>
 <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-5285f0e70cb58349"></script>
 <!-- AddThis Button END -->
+
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style_32x32 pull-right">
+    <a class="jiathis_button_qzone"></a>
+    <a class="jiathis_button_tsina"></a>
+    <a class="jiathis_button_tqq"></a>
+    <a class="jiathis_button_weixin"></a>
+    <a class="jiathis_button_renren"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+<div class='clearfix'></div>
+</div>
 {% endblock %}
 
 {% block blog_post_previous_next %}
