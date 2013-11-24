@@ -1,0 +1,11 @@
+Downloaded from http://tongwen.openfoundry.org/
+the original file is licensed under GPLv2
+-
+ New Tong Wen Tang and all its extensions are released under the GNU General Public License (GPL) version 2. 
+-
+
+Usage
+<script language="JavaScript" src="path/to/tongwen_core.js"></script>
+
+Modified to include all libraries in one file
+for methods please refer to tongwen_core.js
