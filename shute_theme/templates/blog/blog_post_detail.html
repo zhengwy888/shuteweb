@@ -1,5 +1,5 @@
 {% extends "blog/blog_post_list.html" %}
-{% load mezzanine_tags comment_tags keyword_tags rating_tags i18n future disqus_tags %}
+{% load mezzanine_tags comment_tags keyword_tags rating_tags i18n future disqus_tags static %}
 
 {% block meta_title %}{{ blog_post.meta_title }}{% endblock %}
 
@@ -16,9 +16,29 @@
 {% editable blog_post.title %}{{ blog_post.title }}{% endeditable %}
 {% endblock %}
 
+{% compress css %}
+{% block extra_css %}
+<!-- seems i need the extra_css here, why? -->
+<link rel="stylesheet" href="{% static "css/onoffswitch.css" %}">
+{% endblock %}
+{% endcompress %}
+
+
 {% block breadcrumb_menu %}
 {{ block.super }}
 <li class="active">{{ blog_post.title }}</li>
+<li class="switch pull-right">
+    <div class="onoffswitch" style="margin-bottom:-3px">
+    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="simtrad_switch" >
+    <label class="onoffswitch-label" for="simtrad_switch">
+    <div class="onoffswitch-inner">
+    <div class="onoffswitch-active"><div class="onoffswitch-switch">简</div></div>
+    <div class="onoffswitch-inactive"><div class="onoffswitch-switch">繁</div></div>
+    </div>
+    </label>
+    </div> 
+</li>
+
 {% endblock %}
 
 {% block main %}
@@ -159,5 +179,30 @@ div.addthis_toolbox > .atclear{ clear:none; }
          }); 
      })(jQuery);
 </script>
+
+{% compress js %}
+<script type="text/javascript">
+    (function($) {
+     $(function() {
+         if ( localStorage.getItem('simtrad') === 'sim' ) {
+             TongWen.trans2Simp(document);
+             $('#simtrad_switch').prop('checked', 'true');
+         }
+         $('#simtrad_switch').change(function(e) {
+             if ( e.target.checked ) {
+             //simplified
+             TongWen.trans2Simp(document);
+             localStorage.setItem('simtrad', 'sim');
+             } else {
+             // traditional
+             TongWen.trans2Trad(document);
+             localStorage.setItem('simtrad', 'trad');
+             }
+         });
+     });
+     })(jQuery);
+</script>
+{% endcompress %}
+
 
 {% endblock %}
