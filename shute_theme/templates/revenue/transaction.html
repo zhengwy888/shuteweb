@@ -1,0 +1,61 @@
+{% block title %} 奇星藥店 {% endblock %}
+
+{% block create_trans %}
+<form action="{% url 'trans-add' %}" method="post">
+{% csrf_token %}
+{{newForm.as_table}}
+<input type='submit' value='添加'/>
+</form>
+<em>註釋：負值表示支出，正值比較輸入</em>
+{% endblock %}
+
+{% block current_month_sum %}
+<table>
+    <tr>
+        <th></th>
+        <th>中藥成本</th>
+        <th>中藥銷售</th>
+        <th>利潤率</th>
+        <th>西藥成本</th>
+        <th>西藥銷售</th>
+        <th>利潤率</th>
+    </tr>
+    <tr>
+        <td>當月</td>
+        <td>{{currentMonth.cn_med.cost}}</td>
+        <td>{{currentMonth.cn_med.revenue}}</td>
+        <td>{{currentMonth.cn_med.margin}}</td>
+        <td>{{currentMonth.we_med.cost}}</td>
+        <td>{{currentMonth.we_med.revenue}}</td>
+        <td>{{currentMonth.we_med.margin}}</td>
+    </tr>
+    <tr>
+        <td>上月</td>
+        <td>{{prevMonth.cn_med.cost}}</td>
+        <td>{{prevMonth.cn_med.revenue}}</td>
+        <td>{{prevMonth.cn_med.margin}}</td>
+        <td>{{prevMonth.we_med.cost}}</td>
+        <td>{{prevMonth.we_med.revenue}}</td>
+        <td>{{prevMonth.we_med.margin}}</td>
+    </tr>
+</table>
+{% endblock %}
+
+{% block existing_trans %}
+<h3>當月交易細節</h3>
+<table>
+    <tr>
+        <th>日期</th>
+        <th>種類</th>
+        <th>金額</th>
+    </tr>
+{% for transaction in trans_list %}
+<tr> 
+    <td>{{ transaction.date }}</td>
+    <td>{{ transaction.type }}</td>
+    <td>{{ transaction.amount }}</td>
+    <td><a href="{% url 'trans-delete' transaction.id %}">刪除</a></td>
+</tr>
+{% endfor %}
+</table>
+{% endblock %}
